@@ -1,7 +1,5 @@
 # Portfolio Julie Toussaint
 
-Statische website, geen build-stap nodig.
-
 - `index.html` – alle Nederlandse tekst
 - `js/main.js` – Engelse vertalingen (woordenboek met dezelfde `data-i18n`-sleutels) + taal/thema-knoppen
 - `css/style.css` – opmaak; kleuren staan bovenaan als variabelen in `:root`
@@ -14,23 +12,3 @@ Statische website, geen build-stap nodig.
   - `lab/testrobot.html` + `js/lab-robot.js` – UI-test die een nagebootste Prokomm-handheld bedient
   - `lab/testsoorten.html` + `js/lab-testsoorten.js` – unittest, UI-test, regressietest en mutatietest op dezelfde regel
   - `lab/sql.html` + `js/lab-sql.js` – SQLite-database in WebAssembly (sql.js via cdnjs, dus internet nodig)
-
-## Lokaal bekijken
-Dubbelklik `index.html`. Werkt een experiment zo niet goed, start dan in deze map een lokale webserver (bijvoorbeeld `python -m http.server`) en open http://localhost:8000. Het SQL-lab heeft internet nodig om SQLite te laden.
-
-## Tekst aanpassen
-Pas de Nederlandse tekst aan in `index.html`. Heeft dat element een `data-i18n="..."`, pas dan ook de Engelse tekst met dezelfde sleutel aan in `js/main.js`.
-Op de lab-pagina's staat de Engelse tekst bovenaan in het script van die pagina (`window.JT_EN`).
-
-De demo's zijn geïnspireerd op het werk aan PROLOG voor Deutsche Bahn, maar bevatten geen code of data van het echte systeem. Houd dat zo.
-
-## LinkedIn aanpassen
-De LinkedIn-knop staat in de contactsectie. Zoek in `index.html` naar `linkedin.com` om de profiel-URL te wijzigen.
-
-## Publiceren (gratis)
-1. **Netlify Drop** – ga naar https://app.netlify.com/drop en sleep deze map erin.
-2. **GitHub Pages** – maak een repository, upload deze bestanden, ga naar *Settings → Pages* en kies de branch `main` / map `/ (root)`.
-3. **Cloudflare Pages** – https://pages.cloudflare.com → *Create project* → *Direct upload* → upload deze map.
-4. **Eigen hosting** – upload alle bestanden via FTP naar de webmap (vaak `public_html`).
-
-Telefoonnummer, adres en geboortedatum staan er bewust niet op (privacy).
