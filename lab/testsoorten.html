@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testsoorten · Lab · Julie Toussaint</title>
+  <meta name="description" data-i18n-attr="content:ts.meta" content="Lab-experiment: één magazijnregel, vier manieren om hem te testen. Unittest, UI-test, regressietest en mutatietest, elk met een interactieve demo.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#09111e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/lab.css">
+  <script>
+    (function (r) {
+      r.classList.add('js');
+      try {
+        var t = localStorage.getItem('jt-theme');
+        if (t === 'light' || t === 'dark') r.setAttribute('data-theme', t);
+      } catch (e) {}
+      setTimeout(function () { if (!window.JT_READY) r.classList.remove('js'); }, 4000);
+    })(document.documentElement);
+  </script>
+  <script src="../js/lab-testsoorten.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">Ga naar de inhoud</a>
+
+  <header class="top" id="topbar">
+    <div class="wrap top__in">
+      <a class="brand" href="../index.html">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect class="bm-bg" width="32" height="32" rx="7"/><path class="bm-tick" d="M9.5 16.5l4.2 4.2 8.8-9.4"/></svg>
+        <span class="brand__name">Julie Toussaint</span>
+        <span class="brand__role">/ lab</span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Hoofdnavigatie" data-i18n-attr="aria-label:nav.label">
+        <ol class="nav__list">
+          <li><a href="../index.html"><span class="nav__n">←</span><span>Portfolio</span></a></li>
+          <li><a href="testrobot.html"><span class="nav__n">L1</span><span>Testrobot</span></a></li>
+          <li><a class="is-active" href="testsoorten.html" aria-current="page"><span class="nav__n">L2</span><span data-i18n="lab.n2">Testsoorten</span></a></li>
+          <li><a href="sql.html"><span class="nav__n">L3</span><span>SQL-lab</span></a></li>
+        </ol>
+      </nav>
+
+      <div class="tools">
+        <button class="tool tool--lang" id="lang-btn" type="button" aria-label="Wissel naar Engels" data-i18n-attr="aria-label:lang.switch">
+          <span class="lang-nl">NL</span><span class="lang-sep" aria-hidden="true">/</span><span class="lang-en">EN</span>
+        </button>
+        <button class="tool" id="theme-btn" type="button" aria-label="Wissel thema">
+          <svg class="ic ic--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+          <svg class="ic ic--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+        </button>
+        <button class="tool tool--menu" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Navigatiemenu" data-i18n-attr="aria-label:nav.menu">
+          <svg class="ic ic--open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="ic ic--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="lhero" id="top" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="crumb"><a href="../index.html">Portfolio</a><span class="crumb__sep" aria-hidden="true">/</span><a href="../index.html#lab">Lab</a><span class="crumb__sep" aria-hidden="true">/</span><span>L-02</span></p>
+        <p class="hero__eyebrow"><span data-i18n="ts.eyebrow">Experiment 02 · Testsoorten</span></p>
+        <h1 class="lhero__title" id="page-title" data-i18n="lab.n2">Testsoorten</h1>
+        <p class="hero__lead" data-i18n="ts.lead">Eén eenvoudige magazijnregel, vier manieren om hem te testen. Elke testsoort beantwoordt een andere vraag, en vangt andere fouten. Probeer ze hieronder één voor één.</p>
+        <ul class="chips">
+          <li class="chip chip--core">Unittest</li><li class="chip chip--core">UI-test</li><li class="chip chip--core" data-i18n="ts.chipR">Regressietest</li><li class="chip chip--core" data-i18n="ts.chipM">Mutatietest</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ De regel + overzicht ============ -->
+    <section class="lsec lsec--intro" aria-labelledby="h-rule">
+      <div class="wrap">
+        <div class="rulebox">
+          <div class="rulebox__txt">
+            <h2 id="h-rule" data-i18n="ts.ruleH">De regel die we testen</h2>
+            <p data-i18n="ts.ruleP">Een magazijnmedewerker moet flessen water op een cateringtrolley zetten. De app kijkt hoeveel er op de locatie liggen (<b>op voorraad</b>) en hoeveel er nodig zijn (<b>nodig</b>), en antwoordt met één woord:</p>
+          </div>
+          <dl class="answers">
+            <div><dt>VOLL</dt><dd data-i18n="mt.aV">alles is er</dd></div>
+            <div><dt>TEIL</dt><dd data-i18n="mt.aT">er is maar een deel</dd></div>
+            <div><dt>FEHLT</dt><dd data-i18n="mt.aF">er is niets</dd></div>
+            <div><dt>UNGUELTIG</dt><dd data-i18n="mt.aU">de bestelling klopt niet (0 of minder gevraagd)</dd></div>
+          </dl>
+        </div>
+
+        <h2 class="explain__h" data-i18n="ts.ovH">Vier testsoorten, vier vragen</h2>
+        <ol class="tov">
+          <li><a href="#unit">
+            <span class="tov__n">01</span><span class="tov__name">Unittest</span>
+            <span class="tov__q" data-i18n="ts.q1">Klopt dit stukje logica?</span>
+            <span class="tov__meta" data-i18n="ts.m1">Snel · bij elke wijziging</span>
+          </a></li>
+          <li><a href="#ui">
+            <span class="tov__n">02</span><span class="tov__name">UI-test</span>
+            <span class="tov__q" data-i18n="ts.q2">Werkt het zoals de gebruiker het ziet?</span>
+            <span class="tov__meta" data-i18n="ts.m2">Trager · realistisch</span>
+          </a></li>
+          <li><a href="#regressie">
+            <span class="tov__n">03</span><span class="tov__name" data-i18n="ts.chipR">Regressietest</span>
+            <span class="tov__q" data-i18n="ts.q3">Werkt alles wat al werkte nog steeds?</span>
+            <span class="tov__meta" data-i18n="ts.m3">Na elke nieuwe versie</span>
+          </a></li>
+          <li><a href="#mutatie">
+            <span class="tov__n">04</span><span class="tov__name" data-i18n="ts.chipM">Mutatietest</span>
+            <span class="tov__q" data-i18n="ts.q4">Zijn mijn tests goed genoeg?</span>
+            <span class="tov__meta" data-i18n="ts.m4">Af en toe · keurt de tests</span>
+          </a></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 01 Unittest ============ -->
+    <section class="lsec tsec" id="unit" aria-labelledby="h-unit">
+      <div class="wrap">
+        <header class="tsec__head">
+          <p class="tsec__n">01 · Unittest</p>
+          <h2 id="h-unit" data-i18n="ts.q1">Klopt dit stukje logica?</h2>
+          <p class="tsec__lead" data-i18n="ts.u.lead">Een unittest test één klein stukje code rechtstreeks, zonder scherm of database. Je geeft de regel een voorbeeld en controleert het antwoord. Honderden zulke tests draaien in een fractie van een seconde, dus een developer voert ze bij elke wijziging uit.</p>
+        </header>
+        <div class="panel">
+          <div class="panel__bar">
+            <span class="panel__fig">FIG. L2.1</span>
+            <span class="panel__title" data-i18n="ts.u.title">De regel en zijn unittests</span>
+            <div class="panel__tools">
+              <button class="mini mini--go" id="un-run" type="button">
+                <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5z"/></svg>
+                <span data-i18n="ts.u.run">Unittests uitvoeren</span>
+              </button>
+            </div>
+          </div>
+          <div class="duo">
+            <div class="duo__a">
+              <div class="robot__file"><span class="lbl">kommiStatus.js</span><span class="pill">JavaScript</span></div>
+              <ol class="code" id="un-code" aria-label="Broncode"></ol>
+            </div>
+            <div class="duo__b">
+              <div class="robot__file"><span class="lbl">Tests</span><span class="pill" id="un-sum"></span></div>
+              <ul class="rlist" id="un-tests"></ul>
+              <form class="own" id="un-own" autocomplete="off">
+                <p class="own__h" data-i18n="ts.u.ownH">Schrijf zelf een test</p>
+                <div class="own__row">
+                  <label><span data-i18n="ts.u.stock">Op voorraad</span><input class="own__in" id="un-a" type="number" inputmode="numeric" min="-9" max="999" value="3"></label>
+                  <label><span data-i18n="ts.u.need">Nodig</span><input class="own__in" id="un-b" type="number" inputmode="numeric" min="-9" max="999" value="5"></label>
+                  <label><span data-i18n="ts.u.expect">Ik verwacht</span>
+                    <select class="sel" id="un-exp"><option>VOLL</option><option selected>TEIL</option><option>FEHLT</option><option>UNGUELTIG</option></select></label>
+                  <button class="mini mini--go" type="submit" data-i18n="ts.u.check">Test uitvoeren</button>
+                </div>
+                <p class="own__out" id="un-out" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 UI-test ============ -->
+    <section class="lsec tsec" id="ui" aria-labelledby="h-ui">
+      <div class="wrap">
+        <header class="tsec__head">
+          <p class="tsec__n">02 · UI-test</p>
+          <h2 id="h-ui" data-i18n="ts.q2">Werkt het zoals de gebruiker het ziet?</h2>
+          <p class="tsec__lead" data-i18n="ts.i.lead">Een UI-test bedient het scherm zoals een mens: typen, klikken en kijken wat er verschijnt. Zo vang je fouten die een unittest niet ziet: de regel zelf klopt, maar het scherm doet iets verkeerd. Bouw hieronder een schermfout in. De unittests blijven groen, de UI-test niet.</p>
+        </header>
+        <div class="panel">
+          <div class="panel__bar">
+            <span class="panel__fig">FIG. L2.2</span>
+            <span class="panel__title">Pruefen_ZeigtTeil</span>
+            <div class="panel__tools">
+              <label class="sr-only" for="ui-bug" data-i18n="rb.bugL">Bug inbouwen</label>
+              <select class="sel" id="ui-bug">
+                <option value="none" data-i18n="ts.i.b0">Geen schermfout</option>
+                <option value="swap" data-i18n="ts.i.b1">Schermfout: velden omgewisseld</option>
+                <option value="dead" data-i18n="ts.i.b2">Schermfout: knop doet niets</option>
+              </select>
+              <button class="mini mini--go" id="ui-run" type="button">
+                <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5z"/></svg>
+                <span id="ui-run-l" data-i18n="ts.i.run">UI-test uitvoeren</span>
+              </button>
+            </div>
+          </div>
+          <div class="uitest" id="ui-wrap">
+            <div class="uitest__code">
+              <div class="robot__file"><span class="lbl">VerfuegbarkeitTests.cs</span><span class="pill" data-i18n="rb.style">C# · Ranorex-stijl</span></div>
+              <ol class="code" id="ui-code" aria-label="Testscript">
+                <li><span class="a">[Test, Category(<span class="s">"UI"</span>)]</span></li>
+                <li><span class="k">public void</span> Pruefen_ZeigtTeil()</li>
+                <li>{</li>
+                <li>    app.Bestand.PressKeys(<span class="s">"3"</span>);</li>
+                <li>    app.Soll.PressKeys(<span class="s">"5"</span>);</li>
+                <li>    app.Pruefen.Click();</li>
+                <li>    Validate.AreEqual(<span class="s">"TEIL"</span>, app.Ergebnis.Text);</li>
+                <li>}</li>
+              </ol>
+              <p class="unitbadge" id="ui-unit"></p>
+            </div>
+            <div class="robot__stage uitest__stage" id="ui-stage">
+              <div class="hh hh--flat" id="ui-hh">
+                <div class="hh__screen">
+                  <div class="hh__status"><span>Prokomm</span><span>BESTAND</span></div>
+                  <form class="hh__body" id="ui-form" autocomplete="off">
+                    <p class="hh__title">Verfügbarkeit prüfen</p>
+                    <label class="hh__field">Bestand<input class="hh__input" id="ui-stock" inputmode="numeric" spellcheck="false"></label>
+                    <label class="hh__field">Soll<input class="hh__input" id="ui-need" inputmode="numeric" spellcheck="false"></label>
+                    <button class="hh__ok" id="ui-check" type="submit">Prüfen</button>
+                    <p class="hh__result"><span class="lbl">Ergebnis</span><b id="ui-out">—</b></p>
+                  </form>
+                </div>
+              </div>
+              <div class="cursor" id="ui-cursor" aria-hidden="true"><svg viewBox="0 0 22 26"><path d="M1.5 1.5v19.2l5.2-4.8 3.5 7.9 3.4-1.5-3.4-7.7h7.3z"/></svg></div>
+              <div class="robot__shield"></div>
+            </div>
+            <div class="uitest__side">
+              <ol class="tsteps" id="ui-steps" aria-live="polite"></ol>
+              <div class="sum is-idle" id="ui-sum">
+                <p class="sum__line"><span class="sum__state" id="ui-state"></span><span class="sum__count"><b id="ui-n">0</b>/4</span></p>
+                <div class="sum__bar" aria-hidden="true"><i id="ui-bar"></i></div>
+              </div>
+              <div class="report" id="ui-report" hidden>
+                <p class="report__h">Validate.AreEqual · <span data-i18n="rb.line">regel</span> 7</p>
+                <dl class="report__diff">
+                  <div><dt data-i18n="rb.exp">Verwacht</dt><dd>"TEIL"</dd></div>
+                  <div><dt data-i18n="ts.i.screen">Op het scherm</dt><dd id="ui-act"></dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <p class="panel__cap"><span data-i18n="ts.i.cap">Een volledige end-to-end UI-test, met scannen, trolley en database, zie je in</span> <a href="testrobot.html">Testrobot →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 Regressietest ============ -->
+    <section class="lsec tsec" id="regressie" aria-labelledby="h-reg">
+      <div class="wrap">
+        <header class="tsec__head">
+          <p class="tsec__n">03 · <span data-i18n="ts.chipR">Regressietest</span></p>
+          <h2 id="h-reg" data-i18n="ts.q3">Werkt alles wat al werkte nog steeds?</h2>
+          <p class="tsec__lead" data-i18n="ts.r.lead">Software verandert voortdurend. Na elke wijziging voer je daarom álle bestaande tests opnieuw uit: de regressiesuite. Klik door de versies hieronder. In versie 2.0 komt er een nieuwe functie bij. Die werkt, maar onderweg gaat er iets kapot dat al jaren goed werkte.</p>
+        </header>
+        <div class="panel">
+          <div class="panel__bar">
+            <span class="panel__fig">FIG. L2.3</span>
+            <span class="panel__title" data-i18n="ts.r.title">Drie versies van de regel</span>
+            <div class="panel__tools">
+              <div class="seg" id="rg-ver" role="radiogroup" aria-label="Versie" data-i18n-attr="aria-label:ts.r.verL">
+                <button type="button" role="radio" aria-checked="true" data-v="0">v1.0</button>
+                <button type="button" role="radio" aria-checked="false" data-v="1">v2.0</button>
+                <button type="button" role="radio" aria-checked="false" data-v="2">v2.1</button>
+              </div>
+            </div>
+          </div>
+          <div class="duo">
+            <div class="duo__a">
+              <div class="robot__file"><span class="lbl" id="rg-file">kommiStatus.js · v1.0</span><span class="pill" id="rg-tag"></span></div>
+              <p class="reg__note" id="rg-note"></p>
+              <ol class="code" id="rg-code" aria-label="Broncode"></ol>
+            </div>
+            <div class="duo__b">
+              <div class="robot__file">
+                <div class="seg seg--sm" id="rg-scope" role="radiogroup" aria-label="Welke tests" data-i18n-attr="aria-label:ts.r.scopeL">
+                  <button type="button" role="radio" aria-checked="false" data-s="new" data-i18n="ts.r.sNew">Alleen de nieuwe test</button>
+                  <button type="button" role="radio" aria-checked="true" data-s="all" data-i18n="ts.r.sAll">Alle tests</button>
+                </div>
+              </div>
+              <ul class="rlist" id="rg-tests"></ul>
+              <p class="reg__verdict" id="rg-verdict" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 Mutatietest ============ -->
+    <section class="lsec tsec" id="mutatie" aria-labelledby="h-mut">
+      <div class="wrap">
+        <header class="tsec__head">
+          <p class="tsec__n">04 · <span data-i18n="ts.chipM">Mutatietest</span></p>
+          <h2 id="h-mut" data-i18n="ts.q4">Zijn mijn tests goed genoeg?</h2>
+          <p class="tsec__lead" data-i18n="ts.m.lead">Groene tests bewijzen niet dat ze iets zouden opmerken. Een mutatietest keurt je tests, zoals je een rookmelder test met een beetje rook: de engine maakt 12 kopieën van de regel met telkens één klein foutje. Faalt minstens één test? Dan is de fout <b class="is-ok">gevangen</b>. Slagen alle tests toch? Dan is de fout <b class="is-bad">ontsnapt</b>: de tests hebben een blinde vlek.</p>
+        </header>
+        <div class="panel">
+          <div class="panel__bar">
+            <span class="panel__fig">FIG. L2.4</span>
+            <span class="panel__title" data-i18n="mt.title">Worden de fouten gevangen?</span>
+            <div class="panel__tools">
+              <button class="mini" id="mt-reset" type="button">
+                <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 2.34-5.66"/><path d="M4 4v4.5h4.5"/></svg>
+                <span data-i18n="mt.reset">Opnieuw beginnen</span>
+              </button>
+              <button class="mini mini--go" id="mt-run" type="button">
+                <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5z"/></svg>
+                <span data-i18n="mt.run">Fouten opnieuw testen</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="mut">
+            <div class="mut__code">
+              <div class="robot__file"><span class="lbl" data-i18n="mt.src">De regel in code</span><span class="pill">JavaScript</span></div>
+              <ol class="code" id="mt-code" aria-label="Broncode"></ol>
+              <p class="mut__key" id="mt-key" aria-live="polite"></p>
+            </div>
+
+            <div class="mut__tests">
+              <div class="robot__file"><span class="lbl">Tests</span><span class="pill pill--pass" id="mt-suite-pill"></span></div>
+              <ul class="tlist" id="mt-tests"></ul>
+              <p class="mut__hint" data-i18n="mt.testsHint">Vink een test aan of uit en kijk wat er met de fouten gebeurt. T5 tot T7 testen de randgevallen.</p>
+            </div>
+
+            <div class="mut__score">
+              <div class="meter" id="mt-m-cov">
+                <span class="lbl" data-i18n="mt.cov">Code uitgevoerd</span>
+                <b class="meter__v">–</b>
+                <span class="meter__bar"><i></i></span>
+                <span class="meter__sub" data-i18n="mt.covS">regeldekking</span>
+              </div>
+              <div class="meter" id="mt-m-mut">
+                <span class="lbl" data-i18n="mt.score">Fouten gevangen</span>
+                <b class="meter__v">–</b>
+                <span class="meter__bar"><i></i></span>
+                <span class="meter__sub" data-i18n="mt.scoreS">mutatiescore</span>
+              </div>
+              <p class="mut__verdict" id="mt-verdict" aria-live="polite"></p>
+            </div>
+
+            <div class="mut__list">
+              <div class="robot__file"><span class="lbl" data-i18n="mt.mutants">12 foutieve versies</span><span class="pill" id="mt-time"></span></div>
+              <ol class="mlist" id="mt-mutants"></ol>
+            </div>
+          </div>
+          <p class="panel__cap" data-i18n="mt.cap">Probeer dit: klik op een ontsnapte fout om te zien wat er misgaat, en voeg de voorgestelde test toe. Lukt het om alle 12 fouten te vangen?</p>
+          <p class="noscript-note" data-i18n="lab.nojs">Deze demo heeft JavaScript nodig.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec lsec--notes" aria-labelledby="h-notes">
+      <div class="wrap grid">
+        <div class="sec__head">
+          <p class="sec__idx"><span class="sec__n">L2</span><span data-i18n="mt.nk">Wat je leert</span></p>
+          <h2 id="h-notes" data-i18n="ts.nh">Waarom je ze alle vier nodig hebt</h2>
+        </div>
+        <ol class="flow flow--3">
+          <li class="step reveal">
+            <span class="step__n">01</span>
+            <svg class="ic step__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 3 20h18z"/><path d="M7 14h10M9.5 9.5h5"/></svg>
+            <h3 data-i18n="ts.n1h">Veel snelle tests, een paar trage</h3>
+            <p data-i18n="ts.n1p">Unittests zijn snel en goedkoop, dus daar heb je er veel van. UI-tests zijn trager maar testen wat de gebruiker echt ziet, dus die kies je zorgvuldig voor de belangrijkste stromen.</p>
+            <p class="step__meta" data-i18n="ts.n1m">Testpiramide</p>
+          </li>
+          <li class="step reveal" style="--i:1">
+            <span class="step__n">02</span>
+            <svg class="ic step__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v4.5h-4.5"/></svg>
+            <h3 data-i18n="ts.n2h">Elke test wordt een regressietest</h3>
+            <p data-i18n="ts.n2p">Een test die je vandaag schrijft, bewaakt morgen dat niemand per ongeluk iets kapotmaakt. Daarom moet een testsuite stabiel en herhaalbaar zijn: zonder vaste wachttijden en met eigen testdata.</p>
+            <p class="step__meta" data-i18n="ts.n2m">Automatisatie</p>
+          </li>
+          <li class="step reveal" style="--i:2">
+            <span class="step__n">03</span>
+            <svg class="ic step__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v2M12 18.5v2"/></svg>
+            <h3 data-i18n="ts.n3h">Ook de tests worden getest</h3>
+            <p data-i18n="ts.n3p">100% uitgevoerde code betekent niet dat alles gecontroleerd is. Mutatietesten toont waar de blinde vlekken zitten: bijna altijd in de randgevallen.</p>
+            <p class="step__meta" data-i18n="ts.n3m">Testkwaliteit</p>
+          </li>
+        </ol>
+        <p class="aside-note reveal">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>
+          <span data-i18n="ts.note"><strong>In mijn werk</strong> bouw en onderhoud ik vooral geautomatiseerde UI-tests met Ranorex, voor PROLOG en Prokomm, en data-driven tests in Oracle PL/SQL: precies het soort tests dat als regressiesuite telkens opnieuw moet kunnen draaien.</span>
+          <span class="aside-note__logos" aria-hidden="true"><img src="../assets/prolog.png" width="256" height="256" alt=""><img src="../assets/prokomm.png" width="64" height="64" alt=""><img class="is-tile" src="../assets/ranorex.jpg" width="242" height="208" alt=""></span>
+        </p>
+        <nav class="pager" aria-label="Experimenten" data-i18n-attr="aria-label:lab.exps">
+          <a href="testrobot.html"><span class="pager__k" data-i18n="lab.prev">← Vorig experiment</span><span class="pager__t">Testrobot</span></a>
+          <a class="pager__next" href="sql.html"><span class="pager__k" data-i18n="lab.next">Volgend experiment →</span><span class="pager__t">SQL-lab</span></a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <p>© <span id="year">2026</span> Julie Toussaint</p>
+      <a class="foot__top" href="#top" data-i18n="foot.top">Naar boven ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

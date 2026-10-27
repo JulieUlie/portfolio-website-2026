@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testrobot · Lab · Julie Toussaint</title>
+  <meta name="description" data-i18n-attr="content:rb.meta" content="Lab-experiment: een geautomatiseerde UI-test bedient een nagebootste versie van Prokomm, de handheld-app waarmee bij Deutsche Bahn cateringtrolleys worden gekommissioneerd. Bouw een bug in en zie hoe de test hem vangt.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#09111e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/lab.css">
+  <script>
+    (function (r) {
+      r.classList.add('js');
+      try {
+        var t = localStorage.getItem('jt-theme');
+        if (t === 'light' || t === 'dark') r.setAttribute('data-theme', t);
+      } catch (e) {}
+      setTimeout(function () { if (!window.JT_READY) r.classList.remove('js'); }, 4000);
+    })(document.documentElement);
+  </script>
+  <script src="../js/lab-robot.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">Ga naar de inhoud</a>
+
+  <header class="top" id="topbar">
+    <div class="wrap top__in">
+      <a class="brand" href="../index.html">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect class="bm-bg" width="32" height="32" rx="7"/><path class="bm-tick" d="M9.5 16.5l4.2 4.2 8.8-9.4"/></svg>
+        <span class="brand__name">Julie Toussaint</span>
+        <span class="brand__role">/ lab</span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Hoofdnavigatie" data-i18n-attr="aria-label:nav.label">
+        <ol class="nav__list">
+          <li><a href="../index.html"><span class="nav__n">←</span><span>Portfolio</span></a></li>
+          <li><a class="is-active" href="testrobot.html" aria-current="page"><span class="nav__n">L1</span><span>Testrobot</span></a></li>
+          <li><a href="testsoorten.html"><span class="nav__n">L2</span><span data-i18n="lab.n2">Testsoorten</span></a></li>
+          <li><a href="sql.html"><span class="nav__n">L3</span><span>SQL-lab</span></a></li>
+        </ol>
+      </nav>
+
+      <div class="tools">
+        <button class="tool tool--lang" id="lang-btn" type="button" aria-label="Wissel naar Engels" data-i18n-attr="aria-label:lang.switch">
+          <span class="lang-nl">NL</span><span class="lang-sep" aria-hidden="true">/</span><span class="lang-en">EN</span>
+        </button>
+        <button class="tool" id="theme-btn" type="button" aria-label="Wissel thema">
+          <svg class="ic ic--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+          <svg class="ic ic--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+        </button>
+        <button class="tool tool--menu" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Navigatiemenu" data-i18n-attr="aria-label:nav.menu">
+          <svg class="ic ic--open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="ic ic--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="lhero" id="top" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="crumb"><a href="../index.html">Portfolio</a><span class="crumb__sep" aria-hidden="true">/</span><a href="../index.html#lab">Lab</a><span class="crumb__sep" aria-hidden="true">/</span><span>L-01</span></p>
+        <p class="hero__eyebrow"><span data-i18n="rb.eyebrow">Experiment 01 · UI-automatisatie</span></p>
+        <h1 class="lhero__title" id="page-title">Testrobot</h1>
+        <p class="hero__lead" data-i18n="rb.lead">Bij Deutsche Bahn worden cateringtrolleys voor de treinen in het magazijn samengesteld met een handheld-app: Prokomm. Hieronder bedient een geautomatiseerde test een vereenvoudigde nabootsing van zo’n app: hij scant de opslaglocatie, het artikel en de trolley, typt de hoeveelheid, bevestigt en controleert het resultaat tot in de database. Bouw zelf een bug in en kijk of de test hem vangt.</p>
+        <ul class="chips">
+          <li class="chip chip--core" data-i18n="rb.c1">UI-automatisatie</li><li class="chip">Smart waits</li><li class="chip" data-i18n="rb.c3">Databasevalidatie</li><li class="chip">Code 128 · SVG</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lsec" aria-label="Demo">
+      <div class="wrap">
+        <div class="panel">
+          <div class="panel__bar">
+            <span class="panel__fig">FIG. L1</span>
+            <span class="panel__title">Kommissionierung_BuchtBestandAb</span>
+            <div class="panel__tools">
+              <label class="sr-only" for="rb-bug" data-i18n="rb.bugL">Bug inbouwen</label>
+              <select class="sel" id="rb-bug">
+                <option value="none" data-i18n="rb.b0">Geen bug</option>
+                <option value="title" data-i18n="rb.b1">Bug: verkeerde schermtitel</option>
+                <option value="stock" data-i18n="rb.b2">Bug: voorraad fout afgeboekt</option>
+                <option value="slow" data-i18n="rb.b3">Trage server (2,5 s)</option>
+                <option value="hang" data-i18n="rb.b4">Server reageert niet</option>
+              </select>
+              <button class="mini mini--go" id="rb-run" type="button">
+                <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5z"/></svg>
+                <span id="rb-run-l" data-i18n="rb.run">Test uitvoeren</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="robot" id="rb">
+            <div class="robot__code">
+              <div class="robot__file"><span class="lbl">KommissionierungTests.cs</span><span class="pill" data-i18n="rb.style">C# · Ranorex-stijl</span></div>
+              <ol class="code" id="rb-code" aria-label="Testscript">
+                <li><span class="a">[Test, Category(<span class="s">"Prokomm"</span>)]</span></li>
+                <li><span class="k">public void</span> Kommissionierung_BuchtBestandAb()</li>
+                <li>{</li>
+                <li>    <span class="k">var</span> app = Prokomm.Start(<span class="s">"KA-1042"</span>);</li>
+                <li>    <span class="k">int</span> vor = Db.Bestand(<span class="s">"A-03-2"</span>);</li>
+                <li></li>
+                <li>    app.ScanLabel(<span class="s">"A-03-2"</span>);</li>
+                <li>    Validate.AreEqual(<span class="s">"Artikel scannen"</span>, app.Title);</li>
+                <li>    app.ScanLabel(<span class="s">"541234500127"</span>);</li>
+                <li>    app.Menge.PressKeys(<span class="s">"3"</span>);</li>
+                <li>    app.ScanLabel(<span class="s">"TR-07"</span>);</li>
+                <li>    app.Bestaetigen.Click();</li>
+                <li></li>
+                <li>    app.WaitFor(<span class="s">"Gebucht"</span>, <span class="n">5000</span>);</li>
+                <li>    Validate.AreEqual(vor - <span class="n">3</span>, Db.Bestand(<span class="s">"A-03-2"</span>));</li>
+                <li>}</li>
+              </ol>
+            </div>
+
+            <div class="robot__stage" id="rb-stage">
+              <div class="hh" id="hh">
+                <div class="hh__screen">
+                  <div class="hh__status"><span>Prokomm</span><span>KOMMI</span></div>
+                  <div class="hh__body">
+                    <div>
+                      <p class="hh__order">KA-1042 · Pos. 1/1</p>
+                      <p class="hh__title" id="hh-title">Lagerort scannen</p>
+                    </div>
+                    <dl class="hh__task">
+                      <dt>Ort</dt><dd data-t="loc">A-03-2</dd>
+                      <dt>Art</dt><dd data-t="art">541234500127<br>Mineralwasser 0,5 l</dd>
+                      <dt>Menge</dt><dd data-t="qty">3</dd>
+                      <dt>Ziel</dt><dd data-t="trolley">Trolley TR-07 · ICE</dd>
+                    </dl>
+                    <form class="hh__form" id="hh-form" autocomplete="off">
+                      <label class="hh__field" id="hh-field"><span id="hh-lbl">Lagerort</span><input class="hh__input" id="hh-in" spellcheck="false"></label>
+                      <label class="hh__field" id="hh-field2" hidden><span>Trolley</span><input class="hh__input" id="hh-tr" spellcheck="false"></label>
+                      <button class="hh__ok" id="hh-ok" type="submit">OK</button>
+                    </form>
+                    <p class="hh__msg" id="hh-msg" role="status"></p>
+                  </div>
+                </div>
+                <div class="hh__keys" aria-hidden="true"><span></span><span></span><span></span></div>
+              </div>
+
+              <div class="labels">
+                <button class="blabel" id="lb-loc" type="button" data-code="A-03-2"><span class="blabel__k">Lagerort</span><svg aria-hidden="true" focusable="false"></svg><span>A-03-2</span></button>
+                <button class="blabel" id="lb-art" type="button" data-code="541234500127"><span class="blabel__k">Artikel</span><svg aria-hidden="true" focusable="false"></svg><span>541234500127</span></button>
+                <button class="blabel blabel--tr" id="lb-tr" type="button" data-code="TR-07"><img src="../assets/trolley.jpg" width="256" height="256" alt="" decoding="async"><span class="blabel__k">Trolley</span><svg aria-hidden="true" focusable="false"></svg><span>TR-07</span></button>
+              </div>
+
+              <p class="dbread" id="rb-db"><span class="lbl">PROLOG · BESTAND</span><span>A-03-2 = <b id="rb-dbv">24</b></span></p>
+
+              <div class="cursor" id="rb-cursor" aria-hidden="true"><svg viewBox="0 0 22 26"><path d="M1.5 1.5v19.2l5.2-4.8 3.5 7.9 3.4-1.5-3.4-7.7h7.3z"/></svg></div>
+              <div class="robot__shield"></div>
+            </div>
+
+            <div class="robot__side">
+              <ol class="tsteps" id="rb-steps" aria-live="polite"></ol>
+              <div class="sum is-idle" id="rb-sum">
+                <p class="sum__line">
+                  <span class="sum__state" id="rb-state" data-i18n="rb.idle">Klaar om te starten</span>
+                  <span class="sum__count"><b id="rb-n">0</b>/10</span>
+                </p>
+                <div class="sum__bar" aria-hidden="true"><i id="rb-bar"></i></div>
+                <p class="sum__meta"><span id="rb-time">0.0 s</span> · <span id="rb-fails">0</span> <span data-i18n="fig.failed">gefaald</span> · <span id="rb-skips">0</span> <span data-i18n="fig.skipped">overgeslagen</span></p>
+              </div>
+              <div class="report" id="rb-report" hidden>
+                <p class="report__h" id="rb-rh"></p>
+                <div class="report__grid">
+                  <dl class="report__diff">
+                    <div><dt data-i18n="rb.exp">Verwacht</dt><dd id="rb-exp"></dd></div>
+                    <div><dt data-i18n="rb.act">Werkelijk</dt><dd id="rb-act"></dd></div>
+                  </dl>
+                  <figure class="report__shot"><div class="report__frame" id="rb-shot"></div><figcaption data-i18n="rb.shot">Screenshot op het moment van falen</figcaption></figure>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="panel__cap" data-i18n="rb.cap">Tip: als de test niet loopt, kan je de app ook zelf bedienen. Klik op een label om het te scannen.</p>
+          <p class="noscript-note" data-i18n="lab.nojs">Deze demo heeft JavaScript nodig.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec lsec--notes" aria-labelledby="h-notes">
+      <div class="wrap grid">
+        <div class="sec__head">
+          <p class="sec__idx"><span class="sec__n">L1</span><span data-i18n="lab.how">Hoe het werkt</span></p>
+          <h2 id="h-notes" data-i18n="rb.nh">Wat deze test goed maakt</h2>
+        </div>
+        <ol class="flow flow--3">
+          <li class="step reveal">
+            <span class="step__n">01</span>
+            <svg class="ic step__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/></svg>
+            <h3 data-i18n="rb.n1h">Wachten op een toestand, niet op de klok</h3>
+            <p data-i18n="rb.n1p">De test wacht tot het scherm ‘Gebucht’ toont, met een time-out, in plaats van een vaste pauze. Kies ‘Trage server’: de test slaagt nog steeds. Kies ‘Server reageert niet’: na 5 seconden faalt hij met een duidelijke melding.</p>
+            <p class="step__meta">WaitFor · time-out</p>
+          </li>
+          <li class="step reveal" style="--i:1">
+            <span class="step__n">02</span>
+            <svg class="ic step__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13"/><path d="M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>
+            <h3 data-i18n="rb.n2h">Controle tot in de database</h3>
+            <p data-i18n="rb.n2p">Een groene melding op het scherm bewijst niets. De test leest de voorraad vóór en na de pick rechtstreeks uit de database en vergelijkt. Zo vangt hij de bug ‘voorraad fout afgeboekt’, ook al toont het scherm het juiste getal.</p>
+            <p class="step__meta" data-i18n="rb.n2m">Datavalidatie</p>
+          </li>
+          <li class="step reveal" style="--i:2">
+            <span class="step__n">03</span>
+            <svg class="ic step__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            <h3 data-i18n="rb.n3h">Een rapport met bewijs</h3>
+            <p data-i18n="rb.n3p">Faalt een validatie, dan stopt de test, worden de resterende stappen overgeslagen en bewaart het rapport ‘verwacht’ tegenover ‘werkelijk’, plus een screenshot van het scherm op dat moment.</p>
+            <p class="step__meta" data-i18n="rb.n3m">Rapportering</p>
+          </li>
+        </ol>
+        <p class="aside-note reveal">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>
+          <span data-i18n="rb.note"><strong>In mijn werk</strong> test ik zo PROLOG, het logistieke systeem dat B. Rekencentra voor Deutsche Bahn bouwt: de Windows-applicatie en de Android-app Prokomm, end-to-end met C# en Ranorex. Deze demo is een vereenvoudigde nabootsing in JavaScript; er zit geen code of data van het echte systeem in.</span>
+          <span class="aside-note__logos" aria-hidden="true"><img src="../assets/prolog.png" width="256" height="256" alt=""><img src="../assets/prokomm.png" width="64" height="64" alt=""><img class="is-tile" src="../assets/ranorex.jpg" width="242" height="208" alt=""></span>
+        </p>
+        <nav class="pager" aria-label="Experimenten" data-i18n-attr="aria-label:lab.exps">
+          <a class="pager__next" href="testsoorten.html"><span class="pager__k" data-i18n="lab.next">Volgend experiment →</span><span class="pager__t" data-i18n="lab.n2">Testsoorten</span></a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <p>© <span id="year">2026</span> Julie Toussaint</p>
+      <a class="foot__top" href="#top" data-i18n="foot.top">Naar boven ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -26,14 +26,14 @@ const EN = {
   'city': 'Antwerp, Belgium',
   'hero.lead': 'I build automated tests that verify complex logistics software end to end: from the Windows desktop and the Android handheld all the way down into the Oracle database.',
   'hero.cta1': 'Get in touch', 'hero.cta2': 'View my experience',
-  'spec.role': 'Role', 'spec.exp': 'Experience', 'spec.expV': 'Test automation since 2021', 'spec.lang': 'Languages',
+  'spec.role': 'Role', 'spec.roleV': 'Test Automation Application Engineer, since 2021', 'spec.proj': 'Project', 'spec.projV': 'for Deutsche Bahn', 'spec.lang': 'Languages',
   'fig.title': 'End-to-end test setup', 'fig.rerun': 'Run again',
   'fig.alt': 'Diagram: a test suite in C# and Ranorex drives a Windows desktop application and an Android handheld, then verifies the outcome in an Oracle database, also directly through PL/SQL.',
   'log.1': 'Book a goods receipt', 'log.2': 'Close a stocktake', 'log.3': 'Order picking with a handheld scan',
   'log.4': 'Stock verified in the database', 'log.5': 'Business logic tested without the UI',
   'fig.queued': 'Queued', 'fig.running': 'Running', 'fig.passed': 'Passed', 'fig.failed': 'failed', 'fig.skipped': 'skipped',
   'fig.cap': 'Illustrative test run: the suite drives the desktop and the handheld, then validates the outcome in the database.',
-  's1.k': 'Profile', 's1.h': 'About me',
+  's1.k': 'Profile', 's1.h': 'About me', 's1.photo': 'Portrait of Julie Toussaint',
   's1.p1': 'I’m a software developer with a bachelor’s degree in Applied Computer Science and a clear focus on test automation. Since December 2021 I’ve been working as a Test Automation Application Engineer at B. Rekencentra, where I test Deutsche Bahn’s Warehouse Management System end to end.',
   's1.p2': 'I write automated tests in C# and Ranorex, build test data and business-logic checks in Oracle PL/SQL, and turn requirements into clear user stories and test scenarios. I enjoy working closely with developers and stakeholders: my goal is not just a green test run, but software that is stable and reliable.',
   's1.comp': 'Strengths', 's1.c1': 'Collegial and a strong communicator', 's1.c2': 'Driven and results-oriented', 's1.c3': 'Precise and quality-minded',
@@ -50,10 +50,10 @@ const EN = {
   's2.4p': 'A test automation framework built to grow, with test data, database integration, error handling and automated reporting.',
   's2.4m': 'Error handling · reporting',
   's3.k': 'Career', 's3.h': 'Experience', 's3.1d': 'Dec 2021 – present', 's3.now': 'Current role',
-  's3.1b1': 'Developing and maintaining automated end-to-end functional tests for Deutsche Bahn’s Warehouse Management System, using C#, Ranorex and Oracle.',
+  's3.1b1': 'Developing and maintaining automated end-to-end functional tests for PROLOG, Deutsche Bahn’s Warehouse Management System, using C#, Ranorex and Oracle.',
   's3.1b2': 'Building out a scalable test automation framework, including test data, database integration, error handling and automated reporting.',
   's3.1b3': 'Developing data-driven tests and test data with Oracle PL/SQL, to test complex business logic independently of the UI.',
-  's3.1b4': 'Automating functionality for Windows desktop applications and Android handheld applications within warehouse and logistics processes.',
+  's3.1b4': 'Automating functionality for the Windows desktop application and the Android handheld app Prokomm within warehouse and logistics processes, such as picking and loading catering trolleys for the trains.',
   's3.1b5': 'Writing and refining Jira tickets and user stories, including requirements analysis, test scenarios and alignment with developers and stakeholders, with a focus on the stability, reliability and quality of the test automation.',
   's3.2d': 'Feb 2021 – May 2021', 's3.intern': 'Internship',
   's3.2b1': 'Modular development of scalable business applications on a low-code platform, including processes, workflows, integrations and user interfaces.',
@@ -70,11 +70,24 @@ const EN = {
   's5.1b': 'Applying IT to business processes and organisational needs, with a focus on SAP/ERP, business analysis, Enterprise Intelligence, mobile apps and IT integration.',
   's5.2d': 'Dec 2017 – Jun 2018',
   's5.2a': 'Foundations in programming (Java, C), web development (HTML, CSS, JavaScript), databases, networking, software engineering, data science and computer systems.',
+  's7.h': 'Try it yourself.',
+  's7.intro': 'Three interactive experiments, inspired by my work on PROLOG for Deutsche Bahn. Everything runs in your browser.',
+  's7.1p': 'Watch an automated test drive a re-created Prokomm handheld to pick a catering trolley, and inject a bug yourself.',
+  's7.1t': 'UI automation · Smart waits · Code 128',
+  's7.2p': 'One warehouse rule, four ways to test it: unit test, UI test, regression test and mutation test, each with its own demo.',
+  's7.2t': 'Unit · UI · Regression · Mutation',
+  's7.3p': 'A warehouse database for trolleys and trains in WebAssembly. Break the data and let the data quality tests find it.',
+  's7.open': 'Open experiment',
+  's7.illu': 'Illustration: a catering trolley with three crates is brought to the open door of an ICE train.',
+  's7.cap': 'From warehouse to train: a picked trolley is brought on board the ICE. That is exactly the flow the experiments below test.',
   's6.h': 'Let’s talk.',
   's6.lead': 'Looking for someone who builds quality into your software, and can prove it? Feel free to send me a message.',
   's6.copy': 'Copy', 's6.copied': 'Copied', 's6.copyOk': 'Email address copied to the clipboard', 's6.copyFail': 'Copy failed',
   's6.loc': 'Location', 's6.langs': 'Dutch · English · French',
-  'foot.note': 'Hand-written HTML, CSS and JavaScript. No frameworks.', 'foot.top': 'Back to top ↑'
+  'foot.top': 'Back to top ↑',
+  'lab.n2': 'Types of testing', 'lab.how': 'How it works', 'lab.exps': 'Experiments',
+  'lab.next': 'Next experiment →', 'lab.prev': '← Previous experiment', 'lab.all': 'All experiments',
+  'lab.nojs': 'This demo needs JavaScript.'
 };
 // Dynamische NL-teksten; de rest leest initLang uit de HTML
 const NL = {
@@ -82,7 +95,11 @@ const NL = {
   'fig.queued': 'In wachtrij', 'fig.running': 'Bezig',
   's6.copied': 'Gekopieerd', 's6.copyOk': 'E-mailadres gekopieerd naar het klembord', 's6.copyFail': 'Kopiëren mislukt'
 };
+// Lab-pagina's leveren hun eigen teksten aan via window.JT_EN / window.JT_NL
+Object.assign(EN, window.JT_EN);
+Object.assign(NL, window.JT_NL);
 let lang = 'nl';
+const langFns = [];
 const pairs = el => el.getAttribute('data-i18n-attr').split(';').map(p => p.split(':'));
 const t = k => {
   const v = lang === 'en' ? EN[k] : NL[k];
@@ -98,6 +115,7 @@ function applyLang(l, save) {
   });
   $$('[data-i18n-attr]').forEach(el => pairs(el).forEach(([a, k]) => el.setAttribute(a, t(k))));
   syncTheme();
+  langFns.forEach(fn => safe(() => fn(l)));
   if (save) store('jt-lang', l);
 }
 
@@ -178,6 +196,7 @@ function initReveal() {
 // E-mailadres kopiëren
 function initCopy() {
   const btn = $('#copy-btn'), label = $('#copy-label'), status = $('#copy-status');
+  if (!btn) return;
   let timer;
   const done = ok => {
     btn.classList.toggle('is-ok', ok);
@@ -198,7 +217,9 @@ function initCopy() {
 
 // Signature: de testopstelling tekent zichzelf één keer
 function initRig() {
-  const rig = $('#rig'), svg = $('.schema', rig), rows = $$('.log li', rig);
+  const rig = $('#rig');
+  if (!rig) return;
+  const svg = $('.schema', rig), rows = $$('.log li', rig);
   const nEl = $('#rig-n'), bar = $('#rig-bar'), state = $('#rig-state');
   const byAttr = a => Object.fromEntries($$(`[data-${a}]`, svg).map(g => [g.getAttribute(`data-${a}`), g]));
   const nodes = byAttr('node'), badges = byAttr('badge');
@@ -298,5 +319,7 @@ function initRig() {
 // Start
 [initLang, initTheme, initMenu, initScroll, initReveal, initCopy, initRig].forEach(safe);
 safe(() => { $('#year').textContent = new Date().getFullYear(); });
+// Lab-pagina: het eigen script registreert window.JT_PAGE en krijgt hulpfuncties mee
+safe(() => window.JT_PAGE && window.JT_PAGE({ $, $$, t, reduce, lang: () => lang, onLang: fn => langFns.push(fn) }));
 window.JT_READY = true;
 })();
