@@ -30,7 +30,7 @@ const EN = {
   'fig.title': 'End-to-end test setup', 'fig.rerun': 'Run again',
   'fig.alt': 'Diagram: a test suite in C# and Ranorex drives a Windows desktop application and an Android handheld, then verifies the outcome in an Oracle database, also directly through PL/SQL.',
   'log.1': 'Book a goods receipt', 'log.2': 'Close a stocktake', 'log.3': 'Order picking with a handheld scan',
-  'log.4': 'Stock verified in the database', 'log.5': 'Business logic tested without the UI',
+  'log.4': 'Verify stock in the database', 'log.5': 'Test business logic without the UI',
   'fig.queued': 'Queued', 'fig.running': 'Running', 'fig.passed': 'Passed', 'fig.failed': 'failed', 'fig.skipped': 'skipped',
   'fig.cap': 'Illustrative test run: the suite drives the desktop and the handheld, then validates the outcome in the database.',
   's1.k': 'Profile', 's1.h': 'About me', 's1.photo': 'Portrait of Julie Toussaint',
