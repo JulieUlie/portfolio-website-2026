@@ -22,6 +22,7 @@ window.JT_NL = {
   'sq.x8': 'Trolley TR-02 is zijn trein kwijt.',
   'sq.loadFail': 'Kon de WebAssembly-database niet laden. Ben je offline?', 'sq.loadedIn': 'geladen in',
   'sq.row': 'rij', 'sq.rows': 'rijen', 'sq.changed': 'rij(en) gewijzigd', 'sq.noRows': 'Geen rijen.',
+  'sq.capped': 'Gestopt na {n} rijen en {ms} ms, om je browser te sparen.',
   'sq.viol1': 'overtreding', 'sq.violN': 'overtredingen',
   'sq.allPass': 'Alle regels groen', 'sq.fails': 'Regels geschonden', 'sq.stale': 'Data gewijzigd',
   'sq.staleHint': 'De data is gewijzigd sinds de laatste run. Voer de testsuite opnieuw uit.',
@@ -58,6 +59,7 @@ window.JT_EN = {
   'sq.x8': 'Trolley TR-02 lost its train.',
   'sq.loadFail': 'Could not load the WebAssembly database. Are you offline?', 'sq.loadedIn': 'loaded in',
   'sq.row': 'row', 'sq.rows': 'rows', 'sq.changed': 'row(s) changed', 'sq.noRows': 'No rows.',
+  'sq.capped': 'Stopped after {n} rows and {ms} ms to spare your browser.',
   'sq.viol1': 'violation', 'sq.violN': 'violations',
   'sq.allPass': 'All rules green', 'sq.fails': 'Rules violated', 'sq.stale': 'Data changed',
   'sq.staleHint': 'The data changed since the last run. Run the test suite again.',
@@ -182,7 +184,7 @@ window.JT_PAGE = ({ $, t, reduce, lang, onLang }) => {
   const presetsEl = $('#sq-presets'), chaosEl = $('#sq-chaoslog'), sum = $('#sq-sum');
   const btn = { run: $('#sq-run'), suite: $('#sq-suite-run'), chaos: $('#sq-chaos'), reset: $('#sq-reset') };
 
-  let SQL = null, db = null, results = null, running = false, stale = false, suiteMs = 0;
+  let SQL = null, db = null, results = null, running = false, stale = false, suiteMs = 0, runId = 0;
   let chaosDone = [], status = () => t('sq.loading'), statusKind = '', ready = status;
   const opened = new Set();
 
@@ -221,15 +223,46 @@ window.JT_PAGE = ({ $, t, reduce, lang, onLang }) => {
     }).join('');
   }
 
+  // Eigen query's lopen rij per rij: maximaal 200 rijen in beeld, en stoppen na
+  // 100.000 rijen of 1,5 s. Zo bevriest een eindeloze query (bv. een recursieve
+  // CTE zonder stopvoorwaarde) het tabblad niet.
+  const SHOW = 200, MAX_ROWS = 100000, MAX_MS = 1500;
+
+  function stepAll(sql, t0) {
+    const it = db.iterateStatements(sql);
+    let last = null, capped = false;
+    try {
+      for (const stmt of it) {
+        const rows = [];
+        let n = 0;
+        while (stmt.step()) {
+          if (n < SHOW) rows.push(stmt.get());
+          n++;
+          if (n >= MAX_ROWS || (n % 1024 === 0 && performance.now() - t0 > MAX_MS)) { capped = true; break; }
+        }
+        if (n) last = { cols: stmt.getColumnNames(), rows, n };
+        if (capped) break;
+      }
+    } finally {
+      // de iterator geeft elk statement vrij zodra het volgende geparst wordt: afmaken zonder uit te voeren
+      if (capped) for (const rest of it) { void rest; }
+    }
+    return { last, capped };
+  }
+
   function runQuery() {
     const sql = ta.value.trim();
     if (!db || !sql) return;
     const t0 = performance.now();
     try {
-      const sets = db.exec(sql), ms = performance.now() - t0, last = sets[sets.length - 1];
-      if (last) {
-        result.innerHTML = table(last.columns, last.values, 200);
-        const n = last.values.length;
+      const { last, capped } = stepAll(sql, t0), ms = performance.now() - t0;
+      if (capped) {
+        result.innerHTML = table(last.cols, last.rows, SHOW);
+        const n = () => last.n.toLocaleString(lang() === 'nl' ? 'nl-BE' : 'en-GB');
+        setStatus(() => fmt(t('sq.capped'), { n: n(), ms: Math.round(ms) }), 'err');
+      } else if (last) {
+        result.innerHTML = table(last.cols, last.rows, SHOW);
+        const n = last.n;
         setStatus(() => `${n} ${t(n === 1 ? 'sq.row' : 'sq.rows')} · ${dec(ms)} ms`, 'ok');
       } else if (isWrite(sql)) {
         const n = db.getRowsModified();
@@ -283,6 +316,7 @@ window.JT_PAGE = ({ $, t, reduce, lang, onLang }) => {
 
   async function runSuite(animate) {
     if (!db || running) return;
+    const id = ++runId;
     running = true;
     stale = false;
     opened.clear();
@@ -291,6 +325,7 @@ window.JT_PAGE = ({ $, t, reduce, lang, onLang }) => {
     let total = 0;
     for (let i = 0; i < TESTS.length; i++) {
       if (animate) await wait(140);
+      if (id !== runId) return; // afgebroken door resetDb
       const t0 = performance.now();
       try {
         const set = db.exec(TESTS[i].sql)[0];
@@ -331,6 +366,8 @@ window.JT_PAGE = ({ $, t, reduce, lang, onLang }) => {
   }
 
   function resetDb() {
+    runId++;
+    running = false;
     fresh();
     chaosDone = [];
     renderChaos();

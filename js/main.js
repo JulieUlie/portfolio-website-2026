@@ -26,7 +26,7 @@ const EN = {
   'city': 'Antwerp, Belgium',
   'hero.lead': 'I build automated tests that verify complex logistics software end to end: from the Windows desktop and the Android handheld all the way down into the Oracle database.',
   'hero.cta1': 'Get in touch', 'hero.cta2': 'View my experience',
-  'spec.role': 'Role', 'spec.roleV': 'Test Automation Application Engineer, since 2021', 'spec.proj': 'Project', 'spec.projV': 'for Deutsche Bahn', 'spec.lang': 'Languages',
+  'spec.role': 'Role', 'spec.roleV': 'Test Automation Engineer, 5 years of experience', 'spec.proj': 'Project', 'spec.projV': 'for Deutsche Bahn', 'spec.lang': 'Languages',
   'fig.title': 'End-to-end test setup', 'fig.rerun': 'Run again',
   'fig.alt': 'Diagram: a test suite in C# and Ranorex drives a Windows desktop application and an Android handheld, then verifies the outcome in an Oracle database, also directly through PL/SQL.',
   'log.1': 'Book a goods receipt', 'log.2': 'Close a stocktake', 'log.3': 'Order picking with a handheld scan',
@@ -34,36 +34,56 @@ const EN = {
   'fig.queued': 'Queued', 'fig.running': 'Running', 'fig.passed': 'Passed', 'fig.failed': 'failed', 'fig.skipped': 'skipped',
   'fig.cap': 'Illustrative test run: the suite drives the desktop and the handheld, then validates the outcome in the database.',
   's1.k': 'Profile', 's1.h': 'About me', 's1.photo': 'Portrait of Julie Toussaint',
-  's1.p1': 'I’m a software developer with a bachelor’s degree in Applied Computer Science and a clear focus on test automation. Since December 2021 I’ve been working as a Test Automation Application Engineer at B. Rekencentra, where I test Deutsche Bahn’s Warehouse Management System end to end.',
+  's1.p1': 'I’m a software developer with a bachelor’s degree in Applied Computer Science and a clear focus on test automation. At B. Rekencentra I have built up five years of experience as a Test Automation Engineer, testing Deutsche Bahn’s Warehouse Management System end to end.',
   's1.p2': 'I write automated tests in C# and Ranorex, build test data and business-logic checks in Oracle PL/SQL, and turn requirements into clear user stories and test scenarios. I enjoy working closely with developers and stakeholders: my goal is not just a green test run, but software that is stable and reliable.',
   's1.comp': 'Strengths', 's1.c1': 'Collegial and a strong communicator', 's1.c2': 'Driven and results-oriented', 's1.c3': 'Precise and quality-minded',
   's1.out': 'Outside work', 's1.h1': 'Fishing', 's1.h2': 'Browsing flea markets', 's1.h3': 'Looking after my birds',
   's2.k': 'Approach', 's2.h': 'What I do',
-  's2.intro': 'From requirement to report: the four pillars of my day-to-day work.',
+  's2.intro': 'From requirement to report: the five pillars of my day-to-day work.',
   's2.1h': 'Requirements &amp; alignment',
   's2.1p': 'Writing and refining Jira tickets and user stories: analysing requirements, working out test scenarios and aligning with developers and stakeholders.',
-  's2.2h': 'End-to-end automation',
+  's2.2h': 'End‑to‑end automation',
   's2.2p': 'Automated functional tests in C# and Ranorex that walk through real warehouse and logistics processes, on the Windows desktop as well as the Android handheld.',
   's2.3h': 'Data-driven testing',
   's2.3p': 'Test data and tests in Oracle PL/SQL, to verify complex business logic independently of the user interface.',
   's2.4h': 'Scalable framework',
   's2.4p': 'A test automation framework built to grow, with test data, database integration, error handling and automated reporting.',
   's2.4m': 'Error handling · reporting',
+  's2.5h': 'Quality process',
+  's2.5p': 'Reviewing test automation against the Definition of Done, taking turns as scrum master in the stand-ups, and AI-assisted engineering with Claude Code, always critically checked.',
   's3.k': 'Career', 's3.h': 'Experience', 's3.1d': 'Dec 2021 – present', 's3.now': 'Current role',
-  's3.1b1': 'Developing and maintaining automated end-to-end functional tests for PROLOG, Deutsche Bahn’s Warehouse Management System, using C#, Ranorex and Oracle.',
-  's3.1b2': 'Building out a scalable test automation framework, including test data, database integration, error handling and automated reporting.',
-  's3.1b3': 'Developing data-driven tests and test data with Oracle PL/SQL, to test complex business logic independently of the UI.',
-  's3.1b4': 'Automating functionality for the Windows desktop application and the Android handheld app Prokomm within warehouse and logistics processes, such as picking and loading catering trolleys for the trains.',
-  's3.1b5': 'Writing and refining Jira tickets and user stories, including requirements analysis, test scenarios and alignment with developers and stakeholders, with a focus on the stability, reliability and quality of the test automation.',
+  's3.1i': 'I worked in the PROLOG team, alongside the developers, on test automation for the warehouse and logistics system behind on-board catering on Deutsche Bahn’s long-distance trains (DB Fernverkehr). I took over an existing Ranorex framework and became its primary test automation engineer: the only one for the first six months, later joined by colleagues who wrote tests alongside their other work. Over those five years I was the largest contributor to the test code, with more than 3,700 commits.',
+  's3.1b1': 'Designed and built most of the Ranorex/C# framework on the base left by earlier engineers: shared libraries, conventions, the Oracle test-data layer, error handling, reporting and code coverage.',
+  's3.1b9': 'Made the tests stable: object recognition by AccessibleName instead of brittle XPaths, and wait conditions instead of fixed delays.',
+  's3.1b4': 'Automated end-to-end tests for the Windows desktop application and the Android handheld app Prokomm, across warehouse processes such as goods receipt, order picking, inventory and loading catering trolleys for the trains.',
+  's3.1b3': 'Wrote database tests and test data in Oracle PL/SQL to check business logic, such as automatic order proposals, independently of the UI.',
+  's3.1b6': 'Owned the unattended nightly test runs and the test server: suite order, Ranorex agents, release builds, upkeep and the daily follow-up of results.',
+  's3.1b5': 'Analysed requirements and turned them into Jira tickets, user stories and test scenarios, working closely with developers and stakeholders. Researched complex business rules, such as damage codes on restaurant cars, documented them in Confluence and walked the team lead through them.',
+  's3.1b8': 'Took part in the team’s agile way of working: daily stand-ups with a rotating scrum master role, peer review against the Definition of Done, and documentation in Confluence.',
+  's3.1b7': 'Visited Deutsche Bahn on site now and then, to see the software in daily operation and to meet stakeholders.',
+  's3.figs': 'Key figures',
+  's3.f1u': 'years', 's3.f1': 'of end-to-end test automation for Deutsche Bahn',
+  's3.f2u': 'test suites', 's3.f2': 'in the unattended nightly test run',
+  's3.f4n': '≈ 1,200', 's3.f4u': 'test cases', 's3.f4': 'spread across those test suites',
+  's3.f3u': 'layers', 's3.f3': 'Windows desktop, Android handheld and Oracle database',
+  's3.wins': 'Highlights',
+  's3.w1h': 'Self-healing test runs',
+  's3.w1p': 'A hang watcher detects when the desktop application freezes during the nightly run, restarts it and lets the run continue.',
+  's3.w2h': 'Code coverage for UI tests',
+  's3.w2p': 'During the Ranorex runs the application runs under JetBrains dotCover, showing which code the end-to-end tests actually exercise.',
+  's3.w3h': 'Testability built into the app',
+  's3.w3p': 'Added accessibility support to Telerik WinForms controls in the application itself, so the test robot can read lists and checkboxes reliably.',
   's3.2d': 'Feb 2021 – May 2021', 's3.intern': 'Internship',
-  's3.2b1': 'Modular development of scalable business applications on a low-code platform, including processes, workflows, integrations and user interfaces.',
-  's3.integr': 'Integrations',
+  's3.2i': 'Internship in the RoboRana team that replaced the ageing case-management platform of RIZIV/INAMI, Belgium’s national health and disability insurance institute, with Appian. In the new system, case files move automatically from one department or partner to the next.',
+  's3.2b1': 'Built processes, workflows and user interfaces on the Appian low-code platform.',
+  's3.2b2': 'Learned business process management (BPM) and process automation in a real project for a Belgian public institution.',
+  's3.case': 'Case management',
   's4.k': 'Toolkit', 's4.h': 'Skills',
-  's4.g1': 'Test automation', 's4.e2e': 'End-to-end testing', 's4.func': 'Functional testing', 's4.fw': 'Test automation framework', 's4.rep': 'Automated reporting',
+  's4.g1': 'Test automation', 's4.e2e': 'End-to-end testing', 's4.func': 'Functional testing', 's4.fw': 'Test automation framework', 's4.rep': 'Automated reporting', 's4.cov': 'Code coverage (dotCover)', 's4.night': 'Test environment &amp; nightly runs',
   's4.g2': 'Programming', 's4.g3': 'Data', 's4.td': 'Test data', 's4.db': 'Databases',
-  's4.g4': 'Analysis &amp; process', 's4.req': 'Requirements analysis', 's4.ts': 'Test scenarios', 's4.ba': 'Business analysis', 's4.sad': 'Software analysis &amp; design',
+  's4.g4': 'Analysis &amp; process', 's4.req': 'Requirements analysis', 's4.ts': 'Test scenarios', 's4.ba': 'Business analysis', 's4.sad': 'Software analysis &amp; design', 's4.ai': 'AI-assisted engineering',
   's4.g5': 'Platforms', 's4.win': 'Windows desktop applications', 's4.and': 'Android handhelds',
-  's4.g6': 'Languages', 's4.nl': 'Dutch', 's4.nlL': 'native', 's4.en': 'English', 's4.enL': 'very good', 's4.fr': 'French', 's4.frL': 'fair to good',
+  's4.g6': 'Languages', 's4.nl': 'Dutch', 's4.nlL': 'native', 's4.en': 'English', 's4.enL': 'very good', 's4.fr': 'French', 's4.frL': 'fair to good', 's4.de': 'German', 's4.deL': 'domain terms (passive)',
   's5.k': 'Studies', 's5.h': 'Education', 's5.1d': 'Sep 2018 – Sep 2021', 's5.deg': 'Bachelor in Applied Computer Science',
   's5.1at': 'Software development &amp; IT',
   's5.1a': 'Programming in C++, .NET/C# and Java, databases, web technology, software analysis and design, UML, testing and IT infrastructure; building software solutions in hands-on projects.',
@@ -83,8 +103,9 @@ const EN = {
   's6.h': 'Let’s talk.',
   's6.lead': 'Looking for someone who builds quality into your software, and can prove it? Feel free to send me a message.',
   's6.copy': 'Copy', 's6.copied': 'Copied', 's6.copyOk': 'Email address copied to the clipboard', 's6.copyFail': 'Copy failed',
-  's6.loc': 'Location', 's6.langs': 'Dutch · English · French',
+  's6.loc': 'Location', 's6.langs': 'Dutch · English · French', 's6.refs': 'References', 's6.refsV': 'On request',
   'foot.top': 'Back to top ↑',
+  'foot.keys': 'Shortcuts: <kbd>T</kbd> theme · <kbd>L</kbd> language',
   'lab.n2': 'Types of testing', 'lab.how': 'How it works', 'lab.exps': 'Experiments',
   'lab.next': 'Next experiment →', 'lab.prev': '← Previous experiment', 'lab.all': 'All experiments',
   'lab.nojs': 'This demo needs JavaScript.'
@@ -188,7 +209,8 @@ function initScroll() {
 
 // Scroll reveal
 function initReveal() {
-  const els = $$('.reveal');
+  // .sec__head: the section rule draws itself in (CSS); content is not faded in
+  const els = $$('.reveal, .sec__head');
   if (reduce) return els.forEach(el => el.classList.add('is-in'));
   seen(els, (el, io) => { el.classList.add('is-in'); io.unobserve(el); }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
 }
@@ -316,8 +338,30 @@ function initRig() {
   seen([$('.rig__canvas', rig)], (el, io) => { io.disconnect(); if (!started) play(); }, { threshold: 0.3 });
 }
 
+// Sneltoetsen: T = thema, L = taal (niet tijdens typen of met Ctrl/Alt/Cmd)
+function initKeys() {
+  d.addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.repeat || e.defaultPrevented) return;
+    // target kan ook document zijn, en autofill stuurt keydown zonder e.key
+    const el = e.target instanceof Element ? e.target : null;
+    if (el && el.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])')) return;
+    const btn = { t: '#theme-btn', l: '#lang-btn' }[String(e.key || '').toLowerCase()];
+    if (btn && $(btn)) { e.preventDefault(); $(btn).click(); }
+  });
+}
+
+// Voor wie de console opent
+function initConsole() {
+  const msg = lang === 'en'
+    ? ['✓ 67 checks passed · 0 failed', 'Looking for a Test Automation Engineer? Julietous@outlook.com']
+    : ['✓ 67 checks geslaagd · 0 gefaald', 'Op zoek naar een Test Automation Engineer? Julietous@outlook.com'];
+  console.log(`%c${msg[0]}%c\n${msg[1]}`,
+    'color:#22a55a;font:600 14px/1.6 ui-monospace,Consolas,monospace',
+    'color:inherit;font:400 12px/1.6 ui-monospace,Consolas,monospace');
+}
+
 // Start
-[initLang, initTheme, initMenu, initScroll, initReveal, initCopy, initRig].forEach(safe);
+[initLang, initTheme, initMenu, initScroll, initReveal, initCopy, initRig, initKeys, initConsole].forEach(safe);
 safe(() => { $('#year').textContent = new Date().getFullYear(); });
 // Lab-pagina: het eigen script registreert window.JT_PAGE en krijgt hulpfuncties mee
 safe(() => window.JT_PAGE && window.JT_PAGE({ $, $$, t, reduce, lang: () => lang, onLang: fn => langFns.push(fn) }));
