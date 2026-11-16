@@ -394,6 +394,22 @@ html:not(.js) .tools { display: none; }
 .ruler { display: none; }
 .hero { padding-bottom: clamp(24px, 4vw, 48px); }
 
+/* Desktop: de hero vult precies het scherm onder de header (geen lege strook eronder).
+   De figuur rekt mee met de beschikbare hoogte, de spec-tabel sluit aan de onderrand af.
+   Alleen op schermen die hoog genoeg zijn; daaronder blijft de gewone flow. */
+@media (min-width: 1200px) and (min-height: 760px) {
+  .hero {
+    display: flex; flex-direction: column;
+    min-height: calc(100vh - var(--head-h) - 1px);
+    min-height: calc(100svh - var(--head-h) - 1px);
+    padding-top: 16px; padding-bottom: 28px;
+  }
+  .hero__grid { flex: 1 0 auto; grid-template-rows: 1fr auto; row-gap: 40px; }
+  .rig { align-self: stretch; display: flex; flex-direction: column; }
+  .rig__body { flex: 1 0 auto; }
+  .rig__canvas { display: flex; align-items: center; }
+}
+
 /* ---------- Signature figure (rig) ---------- */
 .rig {
   position: relative; margin: 0;

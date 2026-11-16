@@ -18,6 +18,7 @@ The site has three small interactive experiments that show what test automation 
 
 ## Details
 
+- **Full-screen hero:** on desktop screens (at least 1200 × 760 px) the hero fills the whole screen below the header. The test-rig figure stretches with the available height and the facts table closes off the bottom edge. Smaller screens keep the normal flow.
 - **Bilingual:** Dutch is the source text in the HTML. English comes from a dictionary keyed on `data-i18n` attributes.
 - **Themes:** light and dark mode follow the system setting and can be switched by hand. Colours are CSS variables in `:root`.
 - **Keyboard shortcuts:** `T` switches the theme and `L` switches the language.
