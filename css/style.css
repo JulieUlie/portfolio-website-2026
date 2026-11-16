@@ -409,6 +409,12 @@ html:not(.js) .tools { display: none; }
   .hero__grid { flex: 1 0 auto; grid-template-rows: minmax(32px, 1fr) auto minmax(32px, 1fr) auto; row-gap: 0; }
   .hero__copy { grid-row: 2; }
   .spec { grid-row: 4; }
+  /* het blok groeit iets mee met de schermhoogte (ruimere witregels in de tekst; de figuur volgt),
+     zodat er minder lege ruimte boven en onder overblijft */
+  .hero__coord { margin-bottom: clamp(20px, 3vh, 34px); }
+  .hero__eyebrow { margin-bottom: clamp(14px, 2vh, 24px); }
+  .hero__title { margin-bottom: clamp(28px, 4.5vh, 52px); }
+  .hero__cta { margin-top: clamp(32px, 5.5vh, 64px); }
   /* de figuur telt niet mee voor de rijhoogte (contain: size): de tekst bepaalt die,
      en de figuur rekt tot precies dezelfde hoogte; het schema schaalt mee omlaag */
   .rig { grid-row: 2; align-self: stretch; contain: size; display: flex; flex-direction: column; }
