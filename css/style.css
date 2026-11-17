@@ -816,6 +816,19 @@ html:not(.js) .rig__rerun { display: none; }
 .labcard__go .ic { width: 18px; height: 18px; transition: transform .25s cubic-bezier(.2, .7, .2, 1); }
 .labcard:hover .labcard__go .ic { transform: translateX(3px); }
 
+/* Persoonlijk project: één rustige regel onder de Lab-kaarten, duidelijk los van het werk */
+.sideproject {
+  grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px;
+  margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line-2);
+  font-size: 1rem; line-height: 1.6; color: var(--ink-2);
+}
+.sideproject__label { font: 500 .875rem var(--font-sans); color: var(--ink-3); }
+.sideproject b { color: var(--ink); font-weight: 600; }
+.sideproject__go { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--accent); text-decoration: none; }
+.sideproject__go .ic { width: 16px; height: 16px; transition: transform .25s cubic-bezier(.2, .7, .2, 1); }
+.sideproject__go:hover .ic { transform: translateX(3px); }
+@media (max-width: 767px) { .sideproject__label { flex-basis: 100%; } }
+
 /* ---------- Contact ---------- */
 .sec--contact { position: relative; }
 

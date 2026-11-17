@@ -16,6 +16,10 @@ The site has three small interactive experiments that show what test automation 
 | [Test types](https://jt.julietous.workers.dev/lab/testsoorten) | One warehouse rule, tested four ways: unit test, UI test, regression test and mutation test, each with its own interactive demo. |
 | [SQL lab](https://jt.julietous.workers.dev/lab/sql) | A warehouse database running as SQLite in WebAssembly, right in your browser. Break the data and let the data-quality checks find it. |
 
+## Personal project
+
+Separate from the work above, one line under the Lab links to **[ApplyTrack](https://applytrack.julietous.workers.dev)** ([source](https://github.com/JulieUlie/applytrack)), a personal project where Julie practises Playwright (TypeScript) and REST API testing with Postman on a small app of her own. It is labelled as a personal project on the page, so it is not mistaken for work experience.
+
 ## Details
 
 - **Full-screen hero:** on desktop screens (at least 1200 × 760 px) the hero fills the whole screen below the header. Text and test-rig figure share the same height and sit centred between the header and the facts table, which closes off the bottom edge. The block grows slightly with the screen height so less empty space is left. Smaller screens keep the normal flow.
