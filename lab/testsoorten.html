@@ -6,8 +6,8 @@
   <title>Testsoorten · Lab · Julie Toussaint</title>
   <meta name="description" data-i18n-attr="content:ts.meta" content="Lab-experiment: één magazijnregel, vier manieren om hem te testen. Unittest, UI-test, regressietest en mutatietest, elk met een interactieve demo.">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#09111e" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131417" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="https://jt.julietous.workers.dev/lab/testsoorten">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Testsoorten · Lab · Julie Toussaint">
@@ -40,15 +40,14 @@
       <a class="brand" href="../index.html">
         <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect class="bm-bg" width="32" height="32" rx="7"/><path class="bm-tick" d="M9.5 16.5l4.2 4.2 8.8-9.4"/></svg>
         <span class="brand__name">Julie Toussaint</span>
-        <span class="brand__role">/ lab</span>
       </a>
 
       <nav class="nav" id="nav" aria-label="Hoofdnavigatie" data-i18n-attr="aria-label:nav.label">
         <ol class="nav__list">
-          <li><a href="../index.html"><span class="nav__n">←</span><span>Portfolio</span></a></li>
-          <li><a href="testrobot.html"><span class="nav__n">L1</span><span>Testrobot</span></a></li>
-          <li><a class="is-active" href="testsoorten.html" aria-current="page"><span class="nav__n">L2</span><span data-i18n="lab.n2">Testsoorten</span></a></li>
-          <li><a href="sql.html"><span class="nav__n">L3</span><span>SQL-lab</span></a></li>
+          <li><a href="../index.html"><span>Portfolio</span></a></li>
+          <li><a href="testrobot.html"><span>Testrobot</span></a></li>
+          <li><a class="is-active" href="testsoorten.html" aria-current="page"><span data-i18n="lab.n2">Testsoorten</span></a></li>
+          <li><a href="sql.html"><span>SQL-lab</span></a></li>
         </ol>
       </nav>
 
@@ -66,7 +65,6 @@
         </button>
       </div>
     </div>
-    <div class="progress" aria-hidden="true"><i id="progress"></i></div>
   </header>
 
   <main id="main" tabindex="-1">
@@ -134,7 +132,6 @@
         </header>
         <div class="panel">
           <div class="panel__bar">
-            <span class="panel__fig">FIG. L2.1</span>
             <span class="panel__title" data-i18n="ts.u.title">De regel en zijn unittests</span>
             <div class="panel__tools">
               <button class="mini mini--go" id="un-run" type="button">
@@ -146,7 +143,7 @@
           <div class="duo">
             <div class="duo__a">
               <div class="robot__file"><span class="lbl">kommiStatus.js</span><span class="pill">JavaScript</span></div>
-              <ol class="code" id="un-code" aria-label="Broncode"></ol>
+              <ol class="code" tabindex="0" id="un-code" aria-label="Broncode"></ol>
             </div>
             <div class="duo__b">
               <div class="robot__file"><span class="lbl">Tests</span><span class="pill" id="un-sum"></span></div>
@@ -178,7 +175,6 @@
         </header>
         <div class="panel">
           <div class="panel__bar">
-            <span class="panel__fig">FIG. L2.2</span>
             <span class="panel__title">Pruefen_ZeigtTeil</span>
             <div class="panel__tools">
               <label class="sr-only" for="ui-bug" data-i18n="rb.bugL">Bug inbouwen</label>
@@ -196,7 +192,7 @@
           <div class="uitest" id="ui-wrap">
             <div class="uitest__code">
               <div class="robot__file"><span class="lbl">VerfuegbarkeitTests.cs</span><span class="pill" data-i18n="rb.style">C# · Ranorex-stijl</span></div>
-              <ol class="code" id="ui-code" aria-label="Testscript">
+              <ol class="code" tabindex="0" id="ui-code" aria-label="Testscript">
                 <li><span class="a">[Test, Category(<span class="s">"UI"</span>)]</span></li>
                 <li><span class="k">public void</span> Pruefen_ZeigtTeil()</li>
                 <li>{</li>
@@ -254,7 +250,6 @@
         </header>
         <div class="panel">
           <div class="panel__bar">
-            <span class="panel__fig">FIG. L2.3</span>
             <span class="panel__title" data-i18n="ts.r.title">Drie versies van de regel</span>
             <div class="panel__tools">
               <div class="seg" id="rg-ver" role="radiogroup" aria-label="Versie" data-i18n-attr="aria-label:ts.r.verL">
@@ -268,7 +263,7 @@
             <div class="duo__a">
               <div class="robot__file"><span class="lbl" id="rg-file">kommiStatus.js · v1.0</span><span class="pill" id="rg-tag"></span></div>
               <p class="reg__note" id="rg-note"></p>
-              <ol class="code" id="rg-code" aria-label="Broncode"></ol>
+              <ol class="code" tabindex="0" id="rg-code" aria-label="Broncode"></ol>
             </div>
             <div class="duo__b">
               <div class="robot__file">
@@ -295,7 +290,6 @@
         </header>
         <div class="panel">
           <div class="panel__bar">
-            <span class="panel__fig">FIG. L2.4</span>
             <span class="panel__title" data-i18n="mt.title">Worden de fouten gevangen?</span>
             <div class="panel__tools">
               <button class="mini" id="mt-reset" type="button">
@@ -312,7 +306,7 @@
           <div class="mut">
             <div class="mut__code">
               <div class="robot__file"><span class="lbl" data-i18n="mt.src">De regel in code</span><span class="pill">JavaScript</span></div>
-              <ol class="code" id="mt-code" aria-label="Broncode"></ol>
+              <ol class="code" tabindex="0" id="mt-code" aria-label="Broncode"></ol>
               <p class="mut__key" id="mt-key" aria-live="polite"></p>
             </div>
 
@@ -352,26 +346,23 @@
     <section class="sec lsec--notes" aria-labelledby="h-notes">
       <div class="wrap grid">
         <div class="sec__head">
-          <p class="sec__idx"><span class="sec__n">L2</span><span data-i18n="mt.nk">Wat je leert</span></p>
+          <p class="sec__idx"><span data-i18n="mt.nk">Wat je leert</span></p>
           <h2 id="h-notes" data-i18n="ts.nh">Waarom je ze alle vier nodig hebt</h2>
         </div>
         <ol class="flow flow--3">
           <li class="step reveal">
-            <span class="step__n">01</span>
             <svg class="ic step__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 3 20h18z"/><path d="M7 14h10M9.5 9.5h5"/></svg>
             <h3 data-i18n="ts.n1h">Veel snelle tests, een paar trage</h3>
             <p data-i18n="ts.n1p">Unittests zijn snel en goedkoop, dus daar heb je er veel van. UI-tests zijn trager maar testen wat de gebruiker echt ziet, dus die kies je zorgvuldig voor de belangrijkste stromen.</p>
             <p class="step__meta" data-i18n="ts.n1m">Testpiramide</p>
           </li>
           <li class="step reveal" style="--i:1">
-            <span class="step__n">02</span>
             <svg class="ic step__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v4.5h-4.5"/></svg>
             <h3 data-i18n="ts.n2h">Elke test wordt een regressietest</h3>
             <p data-i18n="ts.n2p">Een test die je vandaag schrijft, bewaakt morgen dat niemand per ongeluk iets kapotmaakt. Daarom moet een testsuite stabiel en herhaalbaar zijn: zonder vaste wachttijden en met eigen testdata.</p>
             <p class="step__meta" data-i18n="ts.n2m">Automatisatie</p>
           </li>
           <li class="step reveal" style="--i:2">
-            <span class="step__n">03</span>
             <svg class="ic step__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v2M12 18.5v2"/></svg>
             <h3 data-i18n="ts.n3h">Ook de tests worden getest</h3>
             <p data-i18n="ts.n3p">100% uitgevoerde code betekent niet dat alles gecontroleerd is. Mutatietesten toont waar de blinde vlekken zitten: bijna altijd in de randgevallen.</p>

@@ -29,7 +29,6 @@
   display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; min-height: 56px;
   padding: 10px 12px 10px 16px; border-bottom: 1px solid var(--line);
 }
-.panel__fig { display: none; }
 .panel__title { min-width: 0; margin-right: auto; font-size: .9375rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.25; }
 .panel__tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 /* Telefoon: de knoppen vullen samen de regel, zodat gestapelde knoppen even breed zijn */
@@ -560,6 +559,8 @@ html.js .noscript-note { display: none; }
 .sqlx__empty { padding: 16px; font-size: .875rem; color: var(--ink-3); }
 
 .rtable-wrap { max-height: 320px; overflow: auto; }
+/* scrollable panels take keyboard focus (tabindex=0) so they can be scrolled with the arrow keys; ring drawn inside */
+.code:focus-visible, .rtable-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .rtable { width: 100%; border-collapse: collapse; font: 500 .75rem var(--font-mono); }
 .rtable th {
   position: sticky; top: 0; padding: 8px 12px; border-bottom: 1px solid var(--line-2); background: var(--surface);

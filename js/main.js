@@ -105,7 +105,7 @@ const EN = {
   's7.cap': 'From warehouse to train: a picked trolley is brought on board the ICE. That is exactly the flow the experiments below test.',
   's6.h': 'Let’s talk.',
   's6.lead': 'Looking for someone who builds quality into your software, and can prove it? Feel free to send me a message.',
-  's6.copy': 'Copy', 's6.copied': 'Copied', 's6.copyOk': 'Email address copied to the clipboard', 's6.copyFail': 'Copy failed',
+  's6.copy': 'Copy', 's6.copyWhat': 'email address', 'newtab': ' (opens in a new tab)', 's6.copied': 'Copied', 's6.copyOk': 'Email address copied to the clipboard', 's6.copyFail': 'Copy failed',
   's6.loc': 'Location', 's6.langs': 'Dutch · English · French', 's6.refs': 'References', 's6.refsV': 'On request',
   'foot.top': 'Back to top ↑',
   'foot.keys': 'Shortcuts: <kbd>T</kbd> theme · <kbd>L</kbd> language',
@@ -160,6 +160,12 @@ const isDark = () => (root.dataset.theme || (darkMQ.matches ? 'dark' : 'light'))
 function syncTheme() {
   const b = $('#theme-btn');
   if (b) b.setAttribute('aria-label', t(isDark() ? 'theme.light' : 'theme.dark'));
+  // browserbalk (mobiel) volgt ook een met de hand gekozen thema, niet alleen de systeeminstelling
+  const bg = getComputedStyle(root).getPropertyValue('--bg').trim();
+  $$('meta[name="theme-color"]').forEach(m => {
+    if (!m.dataset.sys) m.dataset.sys = m.content;
+    m.content = root.dataset.theme && bg ? bg : m.dataset.sys;
+  });
 }
 function initTheme() {
   $('#theme-btn').addEventListener('click', () => {
@@ -176,32 +182,40 @@ function initTheme() {
 function initMenu() {
   const btn = $('#menu-btn'), nav = $('#nav');
   const isOpen = () => btn.getAttribute('aria-expanded') === 'true';
+  const head = btn.closest('.top');
   const set = open => {
     root.classList.toggle('menu-open', open);
     btn.setAttribute('aria-expanded', String(open));
   };
-  btn.addEventListener('click', () => set(!isOpen()));
+  // het menu staat vóór de knop in de DOM: zet de focus op de eerste link, anders springt Tab er voorbij
+  btn.addEventListener('click', () => {
+    const open = !isOpen();
+    set(open);
+    const first = open && $('a', nav);
+    if (first) first.focus({ preventScroll: true });
+  });
   nav.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
   d.addEventListener('click', e => { if (isOpen() && !e.target.closest('.top')) set(false); });
+  // focus verlaat de header (Tab voorbij het menu): menu dicht, zodat het niet over de inhoud blijft hangen
+  head.addEventListener('focusout', e => {
+    if (isOpen() && e.relatedTarget && !head.contains(e.relatedTarget)) set(false);
+  });
   d.addEventListener('keydown', e => {
     if (e.key === 'Escape' && isOpen()) { set(false); btn.focus(); }
   });
   matchMedia('(min-width: 960px)').addEventListener('change', e => { if (e.matches) set(false); });
 }
 
-// Header-rand, leesvoortgang en actieve sectie
+// Header-rand en actieve sectie
 function initScroll() {
-  const head = $('#topbar'), bar = $('#progress');
+  const head = $('#topbar');
   let queued = false;
   const update = () => {
     queued = false;
-    const y = scrollY, max = root.scrollHeight - innerHeight;
-    head.classList.toggle('is-scrolled', y > 4);
-    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max).toFixed(4) : 0})`;
+    head.classList.toggle('is-scrolled', scrollY > 4);
   };
   const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
   addEventListener('scroll', queue, { passive: true });
-  addEventListener('resize', queue);
   update();
 
   const links = $$('.nav a[href^="#"]');

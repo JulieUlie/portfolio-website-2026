@@ -37,7 +37,7 @@ window.JT_EN = {
   'sq.lead': 'A warehouse database for catering trolleys on ICE trains, as a real SQL database in your browser. Every business rule is a test in SQL. Query the data yourself, break something with the chaos button and see whether the data quality tests find it.',
   'sq.c4': 'Data quality', 'sq.title': 'Warehouse · trolleys · trains',
   'sq.reset': 'Reset database', 'sq.chaos': 'Chaos: break the data',
-  'sq.presetsL': 'Example queries', 'sq.editorL': 'SQL query', 'sq.run': 'Run query', 'sq.loading': 'Loading database…',
+  'sq.presetsL': 'Example queries', 'sq.editorL': 'SQL query', 'sq.resultL': 'Query result', 'sq.run': 'Run query', 'sq.loading': 'Loading database…',
   'sq.schema': 'View schema', 'sq.suite': 'Data quality tests', 'sq.suiteRun': 'Run test suite', 'sq.notRun': 'Not run yet',
   'sq.cap': 'Everything runs locally in your browser; nothing is sent anywhere. The schema and data are made up and simplified.',
   'sq.p1': 'Stock per location', 'sq.p2': 'Trolleys per train', 'sq.p3': 'Chilled items', 'sq.p4': 'Break something yourself',

@@ -1,6 +1,6 @@
 /* ==========================================================================
    Julie Toussaint · portfolio
-   Variant B: "Precision blueprint" (Swiss grid, hairlines, mono annotations)
+   Calm, print-like layout: IBM Plex, hairlines, drawn-line motion (no fade-ins)
    ========================================================================== */
 
 /* ---------- Tokens ---------- */
@@ -214,7 +214,6 @@ main:focus { outline: none; }
 .brand__mark { width: 28px; height: 28px; flex: none; }
 .bm-bg { fill: var(--accent); }
 .bm-tick { fill: none; stroke: var(--accent-ink); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-.brand__role { display: none; }
 
 .nav__list { display: flex; gap: 2px; }
 .nav a {
@@ -232,7 +231,6 @@ main:focus { outline: none; }
   transition: transform .3s cubic-bezier(.2, .7, .2, 1);
 }
 .nav a.is-active::after { transform: scaleX(1); }
-.nav__n { display: none; }
 
 .tools { display: flex; align-items: center; gap: 6px; }
 html:not(.js) .tools { display: none; }
@@ -275,9 +273,6 @@ html:not(.js) .tools { display: none; }
 .ic--close { display: none; }
 .menu-open .ic--close { display: block; }
 .menu-open .ic--open { display: none; }
-
-/* reading-progress bar retired in v8 (a template trope); the element stays for main.js */
-.progress { display: none; }
 
 @media (max-width: 959.98px) {
   .tool--menu { display: inline-grid; }
@@ -390,8 +385,7 @@ html:not(.js) .tools { display: none; }
   .hero__title { font-size: clamp(4.25rem, 5.4vw, 5.25rem); }
 }
 
-/* the ruler strip under the hero is retired; the hero simply ends with breathing room */
-.ruler { display: none; }
+/* the hero simply ends with breathing room */
 .hero { padding-bottom: clamp(24px, 4vw, 48px); }
 
 /* Desktop: de hero vult precies het scherm onder de header (geen lege strook eronder).
@@ -443,7 +437,6 @@ html:not(.js) .tools { display: none; }
   display: flex; align-items: center; gap: 12px; min-height: 52px;
   padding: 8px 10px 8px 16px; border-bottom: 1px solid var(--line);
 }
-.rig__fig { display: none; }
 .rig__title { min-width: 0; font-size: .9375rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.25; }
 
 .rig__rerun {
@@ -587,7 +580,6 @@ html:not(.js) .rig__rerun { display: none; }
 .sec__head::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--ink); transform-origin: 0 50%; }
 .sec__head::before { content: ""; position: absolute; z-index: 1; top: -1px; left: 0; width: 56px; height: 3px; background: var(--grad); transform-origin: 0 50%; }
 .sec__idx { font: 600 .9375rem/1.4 var(--font-sans); color: var(--ink-3); }
-.sec__n { display: none; }
 .sec__head h2 { font-size: clamp(2.125rem, 1.4rem + 3vw, 3.5rem); letter-spacing: -.03em; line-height: 1.02; }
 
 @media (min-width: 768px) {
@@ -611,7 +603,6 @@ html:not(.js) .rig__rerun { display: none; }
   background: var(--surface); border: 1px solid var(--line);
 }
 .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
-.portrait__cap { display: none; }
 @media (min-width: 768px) {
   .grid > .portrait { grid-column: 1 / span 3; width: min(100%, 200px); margin-bottom: 0; }
 }
@@ -627,7 +618,6 @@ html:not(.js) .rig__rerun { display: none; }
   display: flex; gap: 10px; padding-top: 6px;
   font: 600 1.0625rem/1.45 var(--font-sans); color: var(--ink);
 }
-.row__n { display: none; }
 @media (min-width: 768px) {
   .row { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
   .row__k { grid-column: 1 / span 3; }
@@ -644,7 +634,6 @@ html:not(.js) .rig__rerun { display: none; }
 @media (min-width: 560px) { .traits { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .trait { position: relative; padding-top: 14px; }
 .trait::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad); transform-origin: 0 50%; }
-.trait__id, .trait__ic { display: none; }
 .trait__t { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; }
 
 /* hobbies */
@@ -680,7 +669,6 @@ html:not(.js) .rig__rerun { display: none; }
   content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px;
   background: var(--surface); border: 1.5px solid var(--accent);
 }
-.step__n { display: none; }
 .step__ic { width: 26px; height: 26px; margin: 2px 0 0; color: var(--accent); stroke-width: 1.5; }
 .step h3 { font-size: 1.25rem; letter-spacing: -.015em; }
 .step p { font-size: 1rem; line-height: 1.6; color: var(--ink-2); }
@@ -742,7 +730,6 @@ html:not(.js) .rig__rerun { display: none; }
 .wins { display: grid; gap: 12px; margin-bottom: 24px; }
 @media (min-width: 900px) { .wins { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .win { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 16px; background: var(--surface); border: 1px solid var(--line); }
-.win__id, .win__ic { display: none; }
 .win h5 { font-size: 1.125rem; line-height: 1.3; letter-spacing: -.01em; }
 .win p { font-size: 1rem; line-height: 1.55; color: var(--ink-2); }
 
@@ -796,8 +783,10 @@ html:not(.js) .rig__rerun { display: none; }
 .illu__arrow { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .illu__tag path { stroke: var(--line-2); stroke-width: 1; stroke-dasharray: 2 3; }
 .illu__tag text { font: 500 13px var(--font-mono); letter-spacing: .08em; fill: var(--ink-2); }
+/* the drawing scales down with the screen; below ~1000px its two labels would shrink under the 12px mono floor
+   (about 4px on a phone), so they are left out there; the caption and the svg title carry the meaning */
+@media (max-width: 999.98px) { .illu__tag { display: none; } }
 .illu__cap { margin-top: 10px; font-size: .875rem; line-height: 1.5; color: var(--ink-3); }
-.illu__fig { display: none; }
 
 /* ---------- Lab (teasers naar de experimentpagina's) ---------- */
 .labs { grid-column: 1 / -1; display: grid; gap: 12px; }
@@ -808,7 +797,6 @@ html:not(.js) .rig__rerun { display: none; }
   transition: border-color .15s ease;
 }
 .labcard:hover { border-color: var(--accent); }
-.labcard__id, .labcard__ic { display: none; }
 .labcard h3 { font-size: 1.25rem; letter-spacing: -.02em; }
 .labcard p { font-size: 1rem; line-height: 1.6; color: var(--ink-2); }
 .labcard__tech { margin-top: auto; padding-top: 6px; font: 500 .875rem var(--font-sans); color: var(--ink-3); }
@@ -969,7 +957,7 @@ kbd {
 
 /* ---------- Print ---------- */
 @media print {
-  .top, .skip, .rig__rerun, .copy, .ruler, .foot__keys { display: none !important; }
+  .top, .skip, .rig__rerun, .copy, .foot__keys { display: none !important; }
   .js .reveal { opacity: 1 !important; transform: none !important; }
   .xp__body::after { display: none !important; }
   .sec { padding-block: 32px; }
