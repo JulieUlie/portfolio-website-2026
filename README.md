@@ -1,6 +1,6 @@
 # Julie Toussaint · Portfolio
 
-Personal portfolio of Julie Toussaint, a software developer specialised in test automation.
+Personal portfolio of Julie Toussaint: full-stack test automation (QA) and full-stack development in C# and PL/SQL.
 
 **Live:** https://jt.julietous.workers.dev
 
@@ -30,18 +30,16 @@ Separate from the work above, one line under the Lab links to **[ApplyTrack](htt
 - **Findable:** the site has canonical links, Open Graph tags, JSON-LD (`Person`), `sitemap.xml` and `robots.txt`.
 - **Small extras:** the 404 page looks like a failed test, and the browser console greets you with a passing test run.
 
-## What changed in v13
+## What changed in v14
 
-A polish release (November 2026). The content is the same; the changes are about keyboard use, small screens and tidier code.
+A content release for recruiters (November 2026): less filler, more evidence. Every claim comes from five years of work on PROLOG.
 
-- **Mobile menu:** opening it moves focus to the first link, and tabbing out of the header closes it again. Before, the Tab key skipped the open menu, because the menu comes before its button in the page.
-- **Browser bar colour:** the `theme-color` now matches the current light and dark backgrounds, and it follows the theme you pick by hand, not only the system setting.
-- **Lab illustration:** below 1000 px wide, the two small labels on the train drawing are hidden. At phone width they shrank to about 4 px, far below the site's 12 px floor for mono text. The caption still explains the drawing.
-- **Screen readers:** the copy button is now announced as "Copy email address", and the LinkedIn and ApplyTrack links say that they open in a new tab.
-- **Lab code and results:** the code listings and the SQL result table are now focusable, so keyboard users can scroll them sideways on small screens.
-- **Cleanup:** removed markup and CSS that had been hidden since the v8 redesign (section numbers, figure labels, card codes, unused icons and the old reading-progress bar), plus the scroll handler that kept updating that invisible bar. The layout is unchanged: the desktop screenshots before and after match pixel for pixel.
-
-The site has no automated test suite. This release was checked with a scripted Playwright run (44 checks: all pages in light and dark at 375 and 1280 px, the menu, theme colour, labels and accessible names). That run passed twice.
+- **Two profiles:** the profile section now shows *Full-stack Test Automation (QA)* and *Full-stack Development (C# · PL/SQL)* side by side, each with four concrete achievements and its stack. The hero title, the facts table ("Open to") and the contact text follow the same two directions.
+- **Role and responsibilities:** the former "Approach" section now says what was owned, built or mainly contributed to: analysis and test design, the C# framework and tests, SQL and PL/SQL, the nightly runs and the test strategy.
+- **Experience:** tighter achievements, key figures (33 suites, about 1,200 test cases, a 6 to 8 hour nightly run) and four highlights told as problem, approach and result.
+- **"How I work":** three evidence-backed traits replace the generic competencies; hobbies were removed.
+- **Skills:** split into what was used professionally for five years (test automation, C# / .NET, SQL and databases, analysis) and what comes from studies and the internship.
+- **Layout:** checked at 320, 375, 768, 1024, 1280 and 1920 px with no sideways scrolling; long headings wrap on narrow phones, profile cards and traits stack below 1000 px, and CSS/JS are loaded with `?v=14` so browsers pick up the new files.
 
 ## Structure
 
