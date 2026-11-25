@@ -570,6 +570,18 @@ html:not(.js) .rig__rerun { display: none; }
 .sec { padding-block: clamp(72px, 10vw, 128px); }
 .sec--alt { background: var(--band); border-block: 1px solid var(--band-line); }
 
+/* Assisted scroll (homepage only, the page with the test rig): the page comes to rest at the start of
+   each part, right under the header. "proximity" only snaps when you stop near a section start,
+   so long parts such as Ervaring scroll freely and nothing jumps away from you while you read.
+   On large desktop screens the hero fills the screen, so there snapping is firm ("mandatory"):
+   one scroll gesture takes you from one part to the next. */
+html:has(#rig) { scroll-snap-type: y proximity; scroll-padding-top: var(--head-h); }
+html:has(#rig) .hero, html:has(#rig) .sec { scroll-snap-align: start; }
+html:has(#rig) .foot { scroll-snap-align: end; }
+@media (min-width: 1200px) and (min-height: 760px) {
+  html:has(#rig) { scroll-snap-type: y mandatory; }
+}
+
 /* The section rule is two drawn lines: a hairline across (::after) and a short accent bar (::before).
    They draw themselves in when the section arrives (see Motion); the content itself does not fade. */
 .sec__head {

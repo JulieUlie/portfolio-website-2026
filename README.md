@@ -23,12 +23,18 @@ Separate from the work above, one line under the Lab links to **[ApplyTrack](htt
 ## Details
 
 - **Full-screen hero:** on desktop screens (at least 1200 × 760 px) the hero fills the whole screen below the header. Text and test-rig figure share the same height and sit centred between the header and the facts table, which closes off the bottom edge. The block grows slightly with the screen height so less empty space is left. Smaller screens keep the normal flow.
+- **Assisted scroll:** the home page scrolls part by part with CSS scroll snapping. On large desktop screens (at least 1200 × 760 px, where the hero fills the screen) one scroll gesture takes you to the start of the next section, right under the header; long sections such as Experience still scroll freely. On smaller screens the page only settles on a section start when you stop close to one. The Lab pages scroll normally.
 - **Bilingual:** Dutch is the source text in the HTML. English comes from a dictionary keyed on `data-i18n` attributes.
 - **Themes:** light and dark mode follow the system setting and can be switched by hand. Colours are CSS variables in `:root`.
 - **Keyboard shortcuts:** `T` switches the theme and `L` switches the language.
 - **Accessible:** the site uses semantic sections and labelled headings, works with `prefers-reduced-motion` and has a readable print layout. The mobile menu is usable by keyboard, links that open a new tab say so to screen readers, and the scrollable code listings and SQL results in the Lab can be scrolled with the arrow keys.
 - **Findable:** the site has canonical links, Open Graph tags, JSON-LD (`Person`), `sitemap.xml` and `robots.txt`.
 - **Small extras:** the 404 page looks like a failed test, and the browser console greets you with a passing test run.
+
+## What changed in v15
+
+- **Assisted scroll:** the home page now comes to rest at the start of each section (see Details). It is pure CSS (`scroll-snap-type`), so nothing moves on its own and text and cards stay where they are.
+- CSS and JS are loaded with `?v=15` so browsers pick up the new files.
 
 ## What changed in v14
 
